@@ -20,4 +20,13 @@ public class EnemyController : MonoBehaviour
     {
         agent.SetDestination(target.position);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Shield")
+        {
+            Debug.Log("rip2");
+            Destroy(this.gameObject);
+        }
+    }
 }

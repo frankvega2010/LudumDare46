@@ -21,4 +21,14 @@ public class Shield : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = rotation;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("rip3");
+            //Destroy(this.gameObject);
+            gameObject.SetActive(false);
+        }
+    }
 }
