@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = rotation;
         }
+
+        Move();
     }
 
     private void Move()
