@@ -7,9 +7,19 @@ public class Player : MonoBehaviour
     public float speed;
     public LayerMask Mask;
 
+    public GameObject shieldParent;
+    public GameObject[] shields;
+
     // Start is called before the first frame update
     void Start()
     {
+        ShieldItem.OnShieldRecovered += RecoverShield;
+        shields = new GameObject[shieldParent.transform.childCount];
+
+        for (int i = 0; i < shieldParent.transform.childCount; i++)
+        {
+            shields[i] = shieldParent.transform.GetChild(i).gameObject;
+        }
     }
 
     // Update is called once per frame
@@ -46,5 +56,30 @@ public class Player : MonoBehaviour
         {
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
         }
+    }
+
+    private void RecoverShield(GameObject currentItem)
+    {
+        for (int i = 0; i < shields.Length; i++)
+        {
+            if(!shields[i].activeSelf)
+            {
+                Destroy(currentItem);
+                shields[i].SetActive(true);
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("RIP");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        ShieldItem.OnShieldRecovered -= RecoverShield;
     }
 }
