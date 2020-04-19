@@ -11,6 +11,7 @@ public class UIMemoriesCount : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.Get().PlaySound("Gameplay");
         CollectibleManager.OnCollectibleGrabbed += UpdateText;
         //UpdateText(true);
     }

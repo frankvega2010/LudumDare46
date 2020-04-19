@@ -42,7 +42,8 @@ public class GameManager : MonobehaviourSingleton<GameManager>
             if(waitingTimer >= waitingTime)
             {
                // scenes.sceneToChange("Credits Menu");
-                scenes.ChangeScene("Credits Menu");
+                scenes.ChangeScene("Main Menu");
+                PlayerState.Get().hasPlayerWon = true;
                 Destroy(GameManager.Get().gameObject);
             }
         }
