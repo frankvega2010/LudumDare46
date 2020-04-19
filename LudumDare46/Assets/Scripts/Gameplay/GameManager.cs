@@ -15,6 +15,7 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     public Player player;
     private float waitingTimer;
     private bool isFinished;
+    private bool doOnce;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,20 +53,25 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     {
         //Disable player and enemy functions..
 
-        finishScreen.SetActive(true);
-        isFinished = true;
-
-        player.enabled = false;
-
-        if (isPlayerAlive)
+        if(!doOnce)
         {
-            winText.gameObject.SetActive(true);
+            finishScreen.SetActive(true);
+            isFinished = true;
+
+            player.enabled = false;
+
+            if (isPlayerAlive)
+            {
+                winText.gameObject.SetActive(true);
+            }
+            else
+            {
+                lossText.gameObject.SetActive(true);
+            }
+
+            doOnce = true;
         }
-        else
-        {
-            lossText.gameObject.SetActive(true);
-        }
-        
+
     }
 
     private void OnDestroy()
