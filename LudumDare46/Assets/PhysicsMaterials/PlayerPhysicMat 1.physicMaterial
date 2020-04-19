@@ -6,7 +6,7 @@ PhysicMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerPhysicMat
+  m_Name: PlayerPhysicMat 1
   dynamicFriction: 400
   staticFriction: 400
   bounciness: 0
