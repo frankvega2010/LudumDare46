@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonobehaviourSingleton<GameManager>
 {
@@ -14,11 +15,21 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     void Start()
     {
         playerGO = GameObject.FindGameObjectWithTag("Player");
+        player = playerGO.GetComponent<Player>();
         CollectibleManager.OnCollectiblesDone += GameOver;
         Player.OnPlayerGameOver += GameOver;
         finishScreen.SetActive(false);
         winText.gameObject.SetActive(false);
         lossText.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Destroy(GameManager.Get().gameObject);
+        }
     }
 
     private void GameOver(bool isPlayerAlive)
@@ -42,6 +53,6 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     {
         CollectibleManager.OnCollectiblesDone -= GameOver;
         Player.OnPlayerGameOver -= GameOver;
-        player = playerGO.GetComponent<Player>();
+        //player = playerGO.GetComponent<Player>();
     }
 }

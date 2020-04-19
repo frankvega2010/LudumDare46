@@ -83,6 +83,8 @@ public class Player : MonoBehaviour
     {
         // Execute animation.. other stuff..
 
+        Debug.Log("lol");
+
         if(OnPlayerGameOver != null)
         {
             OnPlayerGameOver(false);
