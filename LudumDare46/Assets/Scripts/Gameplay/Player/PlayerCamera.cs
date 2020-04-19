@@ -4,38 +4,20 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public float speed;
+    public Vector3 offset;
+    public Vector3 rotation;
 
+    private Vector3 initialPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+        initialPos = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        Move();
-    }
-
-    private void Move()
-    {
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += new Vector3(0, 0, speed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            transform.position += new Vector3(0, 0, -speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
-        }
+        transform.position = GameManager.Get().playerGO.transform.position + offset;
+        transform.eulerAngles = rotation;
     }
 }

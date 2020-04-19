@@ -4,11 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Shield
   - Enemy
+=======
   - Area1
   - Area2
   - Area3
+>>>>>>> origin/PlayerMov
   layers:
   - Default
   - TransparentFX

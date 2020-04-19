@@ -14,6 +14,7 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     void Start()
     {
         playerGO = GameObject.FindGameObjectWithTag("Player");
+<<<<<<< HEAD
         CollectibleManager.OnCollectiblesDone += GameOver;
         Player.OnPlayerGameOver += GameOver;
         finishScreen.SetActive(false);
@@ -42,6 +43,8 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     {
         CollectibleManager.OnCollectiblesDone -= GameOver;
         Player.OnPlayerGameOver -= GameOver;
+=======
         player = playerGO.GetComponent<Player>();
+>>>>>>> origin/PlayerMov
     }
 }
