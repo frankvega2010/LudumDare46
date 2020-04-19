@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public bool isInArea1, isInArea2, isInArea3;
+    public bool canFollow;
     Transform target;
     NavMeshAgent agent;
     // Start is called before the first frame update
@@ -18,8 +19,14 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Get().player.follow1 && isInArea1)
+        if(canFollow)
         {
+            agent.SetDestination(target.position);
+        }
+
+        /*if (GameManager.Get().player.follow1 && isInArea1)
+        {
+            Destroy(this.gameObject); // test
             agent.SetDestination(target.position);
         }
         if (GameManager.Get().player.follow2 && isInArea2)
@@ -29,7 +36,7 @@ public class EnemyController : MonoBehaviour
         if (GameManager.Get().player.follow3 && isInArea3)
         {
             agent.SetDestination(target.position);
-        }
+        }*/
 
     }
 
