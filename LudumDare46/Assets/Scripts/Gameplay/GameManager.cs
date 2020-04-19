@@ -1,26 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonobehaviourSingleton<GameManager>
 {
-    public GameObject UIScreen;
+    public GameObject finishScreen;
+    public Text winText;
+    public Text lossText;
     public GameObject playerGO;
     // Start is called before the first frame update
     void Start()
     {
         playerGO = GameObject.FindGameObjectWithTag("Player");
         CollectibleManager.OnCollectiblesDone += GameOver;
-        UIScreen.SetActive(false);
+        Player.OnPlayerGameOver += GameOver;
+        finishScreen.SetActive(false);
+        winText.gameObject.SetActive(false);
+        lossText.gameObject.SetActive(false);
     }
 
-    private void GameOver()
+    private void GameOver(bool isPlayerAlive)
     {
-        UIScreen.SetActive(true);
+        //Disable player and enemy functions..
+
+        finishScreen.SetActive(true);
+
+        if (isPlayerAlive)
+        {
+            winText.gameObject.SetActive(true);
+        }
+        else
+        {
+            lossText.gameObject.SetActive(true);
+        }
+        
     }
 
     private void OnDestroy()
     {
         CollectibleManager.OnCollectiblesDone -= GameOver;
+        Player.OnPlayerGameOver -= GameOver;
     }
 }

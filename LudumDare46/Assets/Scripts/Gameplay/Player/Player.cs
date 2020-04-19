@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public delegate void OnPlayerAction(bool isPlayerAlive);
+    public static OnPlayerAction OnPlayerGameOver;
+
     public float speed;
     public LayerMask Mask;
 
     public GameObject shieldParent;
+    public Hitbox playerHitbox;
     public GameObject[] shields;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerHitbox.OnHitboxTrigger += KillPlayer;
         ShieldItem.OnShieldRecovered += RecoverShield;
         shields = new GameObject[shieldParent.transform.childCount];
 
@@ -66,20 +71,24 @@ public class Player : MonoBehaviour
             {
                 Destroy(currentItem);
                 shields[i].SetActive(true);
+                i = shields.Length;
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void KillPlayer()
     {
-        if(collision.gameObject.tag == "Enemy")
+        // Execute animation.. other stuff..
+
+        if(OnPlayerGameOver != null)
         {
-            Debug.Log("RIP");
+            OnPlayerGameOver(false);
         }
     }
 
     private void OnDestroy()
     {
         ShieldItem.OnShieldRecovered -= RecoverShield;
+        playerHitbox.OnHitboxTrigger -= KillPlayer;
     }
 }

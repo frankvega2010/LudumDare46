@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectibleManager : MonoBehaviour
 {
-    public delegate void OnCollectiblesAction();
+    public delegate void OnCollectiblesAction(bool isPlayerAlive);
     public static OnCollectiblesAction OnCollectiblesDone;
 
     public int collectiblesAmount;
@@ -71,7 +71,7 @@ public class CollectibleManager : MonoBehaviour
         {
             if (OnCollectiblesDone != null)
             {
-                OnCollectiblesDone();
+                OnCollectiblesDone(true);
             }
         }
         else
