@@ -6,6 +6,7 @@ public class CollectibleManager : MonoBehaviour
 {
     public delegate void OnCollectiblesAction(bool isPlayerAlive);
     public static OnCollectiblesAction OnCollectiblesDone;
+    public static OnCollectiblesAction OnCollectibleGrabbed;
 
     public int collectiblesAmount;
     public GameObject spawnsParent;
@@ -30,6 +31,12 @@ public class CollectibleManager : MonoBehaviour
         }
 
         collectiblesLeft = collectiblesAmount;
+
+        if (OnCollectibleGrabbed != null)
+        {
+            OnCollectibleGrabbed(true);
+        }
+
         SpawnCollectible();
     }
 
@@ -66,6 +73,11 @@ public class CollectibleManager : MonoBehaviour
         }
 
         collectiblesLeft--;
+
+        if (OnCollectibleGrabbed != null)
+        {
+            OnCollectibleGrabbed(true);
+        }
 
         if (collectiblesLeft <= 0)
         {

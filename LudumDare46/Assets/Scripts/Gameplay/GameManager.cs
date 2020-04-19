@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonobehaviourSingleton<GameManager>
 {
+    public float waitingTime;
+    public SceneChanger scenes;
     public GameObject finishScreen;
     public Text winText;
     public Text lossText;
     public GameObject playerGO;
     public Player player;
+    private float waitingTimer;
+    private bool isFinished;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +29,22 @@ public class GameManager : MonobehaviourSingleton<GameManager>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            scenes.ChangeScene("Main Menu");
             Destroy(GameManager.Get().gameObject);
+        }
+
+        if(isFinished)
+        {
+            waitingTimer += Time.deltaTime;
+
+            if(waitingTimer >= waitingTime)
+            {
+               // scenes.sceneToChange("Credits Menu");
+                scenes.ChangeScene("Credits Menu");
+                Destroy(GameManager.Get().gameObject);
+            }
         }
     }
 
@@ -37,6 +53,9 @@ public class GameManager : MonobehaviourSingleton<GameManager>
         //Disable player and enemy functions..
 
         finishScreen.SetActive(true);
+        isFinished = true;
+
+        player.enabled = false;
 
         if (isPlayerAlive)
         {
