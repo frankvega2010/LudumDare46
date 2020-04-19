@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public LayerMask Mask;
-
+    public bool follow1, follow2, follow3;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +47,22 @@ public class Player : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag=="Area1")
+        {
+            follow1 = true;
+        }
+        if (other.gameObject.tag == "Area2")
+        {
+            follow2 = true;
+        }
+        if (other.gameObject.tag == "Area3")
+        {
+            follow3 = true;
         }
     }
 }
