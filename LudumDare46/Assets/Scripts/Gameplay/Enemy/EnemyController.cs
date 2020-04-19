@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    public delegate void OnEnemyAction();
+    public OnEnemyAction OnEnemyDeath;
+
     public bool isInArea1, isInArea2, isInArea3;
     public bool canFollow;
     Transform target;
@@ -44,7 +47,13 @@ public class EnemyController : MonoBehaviour
 
         if (timer>deathTime)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(this.gameObject);
+
+            if (OnEnemyDeath != null)
+            {
+                OnEnemyDeath();
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -58,6 +67,11 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("rip2");
             Destroy(this.gameObject);
+
+            if(OnEnemyDeath != null)
+            {
+                OnEnemyDeath();
+            }
         }
     }
 

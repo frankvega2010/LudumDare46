@@ -43,8 +43,12 @@ public class EnemyCamp : MonoBehaviour
         {
             enemies[i] = Instantiate(enemiesOriginal[i].gameObject, enemiesOriginal[i].transform.position, enemiesOriginal[i].transform.rotation);
             enemiesController[i] = enemies[i].GetComponent<EnemyController>();
+            enemiesController[i].OnEnemyDeath += CheckEnemies;
             enemies[i].gameObject.SetActive(true);
+
         }
+
+        enemiesLeft = enemies.Length;
     }
 
     private void GoToPlayer()
@@ -55,8 +59,19 @@ public class EnemyCamp : MonoBehaviour
         }
     }
 
+    private void CheckEnemies()
+    {
+        enemiesLeft--;
+
+        if(enemiesLeft <= 0)
+        {
+            Spawn();
+        }
+    }
+
     private void OnDestroy()
     {
         areaTrigger.OnHitboxTrigger -= GoToPlayer;
+        //enemiesController[i].OnEnemyDeath -= CheckEnemies;
     }
 }
