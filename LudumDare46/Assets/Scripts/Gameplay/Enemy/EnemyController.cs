@@ -53,6 +53,12 @@ public class EnemyController : MonoBehaviour
         {
             gameObject.GetComponent<MeshRenderer>().material = damage;
         }
+
+        if (other.gameObject.tag == "Shield")
+        {
+            Debug.Log("rip2");
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -71,12 +77,4 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Shield")
-        {
-            Debug.Log("rip2");
-            Destroy(this.gameObject);
-        }
-    }
 }
