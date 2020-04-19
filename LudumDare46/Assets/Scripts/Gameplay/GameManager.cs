@@ -18,7 +18,7 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        playerGO = GameObject.FindGameObjectWithTag("Player");
+        //playerGO = GameObject.FindGameObjectWithTag("Player");
         player = playerGO.GetComponent<Player>();
         CollectibleManager.OnCollectiblesDone += GameOver;
         Player.OnPlayerGameOver += GameOver;
