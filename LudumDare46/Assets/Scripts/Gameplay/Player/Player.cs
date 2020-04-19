@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject shieldParent;
     public Hitbox playerHitbox;
     public GameObject[] shields;
+    public bool canPickUpShield;
 
     public bool follow1, follow2, follow3;
     // Start is called before the first frame update
@@ -74,7 +75,16 @@ public class Player : MonoBehaviour
             {
                 Destroy(currentItem);
                 shields[i].SetActive(true);
+                canPickUpShield = false;
                 i = shields.Length;
+            }
+        }
+
+        for (int i = 0; i < shields.Length; i++)
+        {
+            if (!shields[i].activeSelf)
+            {
+                canPickUpShield = true;
             }
         }
     }

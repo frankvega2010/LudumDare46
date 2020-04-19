@@ -13,7 +13,7 @@ public class ShieldsManager : MonoBehaviour
     public Transform[] spawnLocations;
     public List<Transform> posibleLocations;
     private float timer;
-    private int activeShields;
+    public int activeShields;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +75,10 @@ public class ShieldsManager : MonoBehaviour
 
     private void CheckShields(GameObject currentItem)
     {
-        activeShields--;
+        if(GameManager.Get().player.canPickUpShield)
+        {
+            activeShields--;
+        }
     }
 
     private void OnDestroy()
