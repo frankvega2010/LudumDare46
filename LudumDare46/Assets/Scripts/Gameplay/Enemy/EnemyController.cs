@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
     public float timer;
     public float deathTime;
+    public MeshRenderer mesh;
     public Material damage;
     public Material normal;
     // Start is called before the first frame update
@@ -60,7 +61,8 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Sword")
         {
-            gameObject.GetComponent<MeshRenderer>().material = damage;
+            //gameObject.GetComponent<MeshRenderer>().material = damage;
+            mesh.material = damage;
         }
 
         if (other.gameObject.tag == "Shield")
@@ -81,7 +83,8 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Sword")
         {
-            gameObject.GetComponent<MeshRenderer>().material = normal;
+            //gameObject.GetComponent<MeshRenderer>().material = normal;
+            mesh.material = normal;
         }
     }
 
