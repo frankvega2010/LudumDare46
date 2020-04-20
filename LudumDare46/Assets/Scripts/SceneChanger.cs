@@ -11,7 +11,7 @@ public class SceneChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SoundManager.Get().PlaySound("Menu");
+        //SoundManager.Get().PlaySound("Menu");
         if (PlayerState.Get().hasPlayerWon)
         {
             GoToCredits();

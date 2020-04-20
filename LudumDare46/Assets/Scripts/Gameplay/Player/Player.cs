@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public bool canPickUpShield;
 
     public bool follow1, follow2, follow3;
+
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,11 +45,21 @@ public class Player : MonoBehaviour
             transform.rotation = rotation;
         }
 
-        Move();
+        if (Input.anyKey)
+        {
+            Move();
+        }
+        else
+        {
+            animator.SetTrigger("idle");
+        }
+
+        
     }
 
     private void Move()
     {
+        animator.SetTrigger("walking");
         if(Input.GetKey(KeyCode.S))
         {
             transform.position += new Vector3(0, 0, speed * Time.deltaTime);
