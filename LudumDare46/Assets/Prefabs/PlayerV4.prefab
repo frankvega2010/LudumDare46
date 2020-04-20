@@ -14809,7 +14809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909f25bdd7d2d8249a200e076279a104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   Mask:
     serializedVersion: 2
     m_Bits: 256
@@ -14820,6 +14820,7 @@ MonoBehaviour:
   follow1: 0
   follow2: 0
   follow3: 0
+  animator: {fileID: 0}
 --- !u!54 &3864357319545647867
 Rigidbody:
   m_ObjectHideFlags: 0
