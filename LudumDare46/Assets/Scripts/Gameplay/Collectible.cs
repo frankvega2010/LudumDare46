@@ -29,6 +29,7 @@ public class Collectible : MonoBehaviour
             {
                 //Debug.Log("nice");
                 OnCollectibleGrab(this.gameObject);
+                SoundManager.Get().PlaySound("Pickup");
             }
             
         }

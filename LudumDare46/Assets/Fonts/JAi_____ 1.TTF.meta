@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e2fdc5d69d3451345a42368af5cb1e59
+guid: 88028d6a8e09cd745baceffd5ac066d1
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -11,7 +11,8 @@ TrueTypeFontImporter:
   fontName: JackInput
   fontNames:
   - JackInput
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {instanceID: 0}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

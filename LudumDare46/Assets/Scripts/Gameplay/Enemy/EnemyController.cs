@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
         {
             //gameObject.SetActive(false);
             Destroy(this.gameObject);
-
+            SoundManager.Get().PlaySound("Ghost_rip");
             if (OnEnemyDeath != null)
             {
                 OnEnemyDeath();
@@ -67,6 +67,8 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("rip2");
             Destroy(this.gameObject);
+            SoundManager.Get().PlaySound("Shield_crack");
+            SoundManager.Get().PlaySound("Ghost_rip");
 
             if(OnEnemyDeath != null)
             {

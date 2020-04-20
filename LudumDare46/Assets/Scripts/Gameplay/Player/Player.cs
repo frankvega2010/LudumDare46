@@ -69,10 +69,12 @@ public class Player : MonoBehaviour
 
     private void RecoverShield(GameObject currentItem)
     {
+        
         for (int i = 0; i < shields.Length; i++)
         {
             if(!shields[i].activeSelf)
             {
+                SoundManager.Get().PlaySound("Pickup");
                 Destroy(currentItem);
                 shields[i].SetActive(true);
                 canPickUpShield = false;

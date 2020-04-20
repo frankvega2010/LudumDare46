@@ -43,7 +43,8 @@ public class GameManager : MonobehaviourSingleton<GameManager>
             if(waitingTimer >= waitingTime)
             {
                // scenes.sceneToChange("Credits Menu");
-                scenes.ChangeScene("Credits Menu");
+                scenes.ChangeScene("Main Menu");
+                
                 Destroy(GameManager.Get().gameObject);
             }
         }
@@ -62,10 +63,12 @@ public class GameManager : MonobehaviourSingleton<GameManager>
 
             if (isPlayerAlive)
             {
+                PlayerState.Get().hasPlayerWon = true;
                 winText.gameObject.SetActive(true);
             }
             else
             {
+                PlayerState.Get().hasPlayerWon = false;
                 lossText.gameObject.SetActive(true);
             }
 
